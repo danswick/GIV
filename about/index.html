@@ -41,7 +41,41 @@
             <div class="section-a">    
                 <div class="content-container">
                     <h2>Putting the GIV into context</h2>
-                    <p>This site was created as part of a final project for <a href="https://generalassemb.ly/chicago">General Assembly's</a> Front-End Web Development course.</p>
+                    <p>This site was created as part of a final project for <a href="https://generalassemb.ly/chicago">General Assembly's</a> Front-End Web Development course. My aim is to help put the Chicago Wilderness Region's <a href="http://www.chicagowilderness.org/what-we-do/protecting-green-infrastructure/epdd-resources/biodiversity-and-natural-habitats/green-infrastructure-vision/" alt="Chicago Wilderness GIV site">Green Infrastructure Vision</a> into context by providing plain-language background information and visual, interactive examples. Right now, that is limited primarily to a basic recap of the GIV2.0 <a href="http://www.chicagowilderness.org/index.php/download_file/view/100/338/" alt="GIV final report pdf">final report</a> and an <a href="http://danswick.com/GIV/explore/index.html" alt="GIV explore section">interactive map</a> of some local examples of GIV landscape types. In the future, I hope to go into greater detail on some use cases for the GIV's findings, provide more local examples and case studies, and provide a few pre-aggregated geospatial datasets for others to use.</p>
+
+                    <p>The following is a brief rundown of my approach to building this site and the datasets and visualizations the serve as its foundation.</p>
+                </div>
+            </div>
+            <div class="section-b">
+                <div class="content-container">
+                    <h2>Building the Map and 'Explore' Section</h2>
+                    <p>This site and all of its code are maintained on <a href="https://github.com/danswick/giv" alt="site repo">GitHub</a> and are available to view at any time. Of course, not everyone is interested in digging through code. I will try to keep the following resources up to date, but please feel free to <a href="http://danswick.com/GIV/contact/index.html" alt="contact page">get in touch</a> or <a href="https://github.com/danswick/giv/issues" alt="github issues page">submit an issue</a> if you see a bug or glaring omission.</p>
+
+                    <h3>Displaying the GIV Data</h3>
+                    <p>I have used open source and freely-availalbe technology throughout this project in hopes that anyone who may be interested in using or improving upon the work will be able to do so. Maps in the Explore section are rendered with <a href="leafletjs.com/" alt="leaflet">Leaflet</a>. The satellite basemap comes from <a href="http://mapbox.com" alt="mapbox">Mapbox</a> and the GIV overlays are all custome map tiles. I had some trouble determining how best to display such a large dataset without investing in third-party services and eventually landed on the following combination (thanks to a tweet from <a href="https://twitter.com/MaptimeHQ/status/578014503318634496" alt="maptime hq tilehut tweet">MaptimeHQ!</a>).</p>
+
+                    <ul>
+                        <li>I am using a very handy little application called <a href="https://github.com/b-g/tilehut" alt="tilehut github repo">Tilehut</a> to serve my maptiles. Tilehut takes care of all the, frankly, confusing backend work of serving up tiles and is purpose-built to work with <a href="https://www.openshift.com/" alt="openshift">Openshift</a>'s free account. Tilehut's GitHub page has a fantastic tutorial that is super easy to follow and actually really helped me understand how SFTP works!</li>
+                        <li>As implied above, I'm keeping all of my tiles on <a href="https://www.openshift.com/" alt="openshift">Openshift</a> for free. The free tier gives you up to a gigabyte of storage, which was perfect for this project.</li>
+                        <li>I styled my custom tiles using <a href="https://github.com/mapbox/tilemill" alt="tilemill">Tilemill</a>. I know that <a href="https://github.com/mapbox/vector-tile-spec/" alt="vector tiles">vector tiles</a> are the new hotness, but 1) the GIV data is all raster and 2) I didn't want to pay for hosting on this project and just don't have the skills to build out my own vector tile backend! While I've learned a ton about Tilemill from my work with <a href="http://maptime.io/chicago/" alt="maptime chicago">Maptime Chicago</a> (plug!), the Tilehut tutorial is actually a fantastic resource for getting started with Tilemill.</li>
+                        <li>All vector data is and will be in <a href="http://geojson.org/geojson-spec.html" alt="geojson spec site">GeoJSON</a> because 1) it is easy to store and version control right in GitHub and 2) it is widely accessible for folks using open source or web-based tools.</li>
+                    </ul>
+
+                    <p>Everything else is handled with some basic javascript/jQuery, most of which came right out of the <a href="http://leafletjs.com/reference.html" alt="leaflet reference page">Leaflet reference page</a>. Check out the Explore page's source or peruse the GitHub repo and you'll get the gist. If you have other questions or want to yell at me about my sloppy code, don't hesitate to <a href="http://danswick.com/GIV/contact/index.html" alt="contact page">get in touch</a> or <a href="https://github.com/danswick/giv/issues" alt="github issues page">submit an issue</a>.</p>
+                </div>
+            </div>
+            <div class="section-a">
+                <div class="content-container">   
+                    <h2>Coming Soon</h2>
+                    <p>There are a few items on my to-do list for this page, which I will list here to keep myself honest.</p>
+
+                    <ul>
+                        <li>Provide pre-aggregated data for a few common geographies (counties, municipalities, townships, etc). This would include totals for each landscape layer as well as the upcoming economic valuation data from <a href="http://www.cmap.illinois.gov/livability/open-space/green-infrastructure-vision" alt="CMAP GIV page">CMAP</a>. These will, of course, be available as GeoJSON on GitHub.</li>
+                        <li>If possible, I would love to make some of the GIV's source data available in open formats on GitHub.</li>
+                        <li>The site is in desperate need of non-map visuals. This might include illustrations, interactive graphs, more photographs, etc.</li>
+                    </ul>
+                    
+                    <p>If you have any other suggestions, please <a href="http://danswick.com/GIV/contact/index.html" alt="contact page">get in touch</a> or <a href="https://github.com/danswick/giv/issues" alt="github issues page">submit an issue</a>.</p>
                 </div>
             </div>
 
